@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary-color: oklch(0.1518 0.0316 270);
+
+  --color-text-primary: oklch(0.9459 0.0094 270);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-primary-color);
+    color: var(--color-text-primary);
+  }
+}

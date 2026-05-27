@@ -1,54 +1,82 @@
 import { z } from "zod";
 
-export const weatherResponseSchema = z.object({
-  coord: z.object({
-    lon: z.number(),
-    lat: z.number(),
+export const WeatherSchema = z.object({
+  latitude: z.number(),
+  longitude: z.number(),
+  generationtime_ms: z.number(),
+  utc_offset_seconds: z.number(),
+  timezone: z.string(),
+  timezone_abbreviation: z.string(),
+  elevation: z.number(),
+
+  current_units: z.object({
+    time: z.string(),
+    interval: z.string(),
+    temperature_2m: z.string(),
+    relative_humidity_2m: z.string(),
+    apparent_temperature: z.string(),
+    is_day: z.string(),
+    precipitation: z.string(),
+    weather_code: z.string(),
+    wind_speed_10m: z.string(),
+    wind_direction_10m: z.string(),
   }),
-  weather: z.array(
-    z.object({
-      id: z.number(),
-      main: z.string(),
-      description: z.string(),
-      icon: z.string(),
-    }),
-  ),
-  base: z.string(),
-  main: z.object({
-    temp: z.number(),
-    feels_like: z.number(),
-    temp_min: z.number(),
-    temp_max: z.number(),
-    pressure: z.number(),
-    humidity: z.number(),
-    // Note: sea_level and grnd_level are sometimes omitted by the API
-    // for certain locations. You might want to append .optional() to these
-    // if you fetch data for cities where this data isn't available.
-    sea_level: z.number(),
-    grnd_level: z.number(),
+
+  current: z.object({
+    time: z.string(),
+    interval: z.number(),
+    temperature_2m: z.number(),
+    relative_humidity_2m: z.number(),
+    apparent_temperature: z.number(),
+    is_day: z.number(),
+    precipitation: z.number(),
+    weather_code: z.number(),
+    wind_speed_10m: z.number(),
+    wind_direction_10m: z.number(),
   }),
-  visibility: z.number(),
-  wind: z.object({
-    speed: z.number(),
-    deg: z.number(),
-    // gust is also occasionally omitted by the API
-    gust: z.number(),
+
+  hourly_units: z.object({
+    time: z.string(),
+    temperature_2m: z.string(),
+    relative_humidity_2m: z.string(),
+    precipitation_probability: z.string(),
+    weather_code: z.string(),
+    wind_speed_10m: z.string(),
   }),
-  clouds: z.object({
-    all: z.number(),
+
+  hourly: z.object({
+    time: z.array(z.string()),
+    temperature_2m: z.array(z.number()),
+    relative_humidity_2m: z.array(z.number()),
+    precipitation_probability: z.array(z.number()),
+    weather_code: z.array(z.number()),
+    wind_speed_10m: z.array(z.number()),
   }),
-  dt: z.number(),
-  sys: z.object({
-    // country might be missing if the location is over an ocean
-    country: z.string(),
-    sunrise: z.number(),
-    sunset: z.number(),
+
+  daily_units: z.object({
+    time: z.string(),
+    weather_code: z.string(),
+    temperature_2m_max: z.string(),
+    temperature_2m_min: z.string(),
+    apparent_temperature_max: z.string(),
+    apparent_temperature_min: z.string(),
+    uv_index_max: z.string(),
+    precipitation_sum: z.string(),
+    wind_speed_10m_max: z.string(),
   }),
-  timezone: z.number(),
-  id: z.number(),
-  name: z.string(),
-  cod: z.number(),
+
+  daily: z.object({
+    time: z.array(z.string()),
+    weather_code: z.array(z.number()),
+    temperature_2m_max: z.array(z.number()),
+    temperature_2m_min: z.array(z.number()),
+    apparent_temperature_max: z.array(z.number()),
+    apparent_temperature_min: z.array(z.number()),
+    uv_index_max: z.array(z.number()),
+    precipitation_sum: z.array(z.number()),
+    wind_speed_10m_max: z.array(z.number()),
+  }),
 });
 
-// Extract the TypeScript type from the schema for use in your React components
-export type WeatherResponse = z.infer<typeof weatherResponseSchema>;
+// Extract the TypeScript type from the schema for use in your components
+export type WeatherData = z.infer<typeof WeatherSchema>;

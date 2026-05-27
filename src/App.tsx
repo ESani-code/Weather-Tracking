@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+
+import Card from "./components/Card";
 import "./App.css";
 import { getWeather } from "./api";
 
@@ -8,14 +10,11 @@ function App() {
     queryFn: () => getWeather({ lat: 50, lon: 50 }),
   });
   return (
-    <>
-      <h1 className="text-amber-950 font-semibold">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ab fugiat
-        veniam incidunt.
-      </h1>
-
-      {JSON.stringify(data)}
-    </>
+    <div className="flex flex-col gap-8 shadow-md">
+      <Card title="Yoooo">{JSON.stringify(data?.latitude)}</Card>
+      <Card title="Heyyyyyyyyyy">{JSON.stringify(data?.longitude)}</Card>
+      <p>{JSON.stringify(data)}</p>
+    </div>
   );
 }
 
