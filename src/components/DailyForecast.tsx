@@ -18,10 +18,19 @@ const DailyForecast = () => {
             key={index}
             className="flex items-center justify-between p-4 rounded-lg shadow"
           >
-            <span>
-              {time} <span>{WeatherMap(data?.daily.weather_code[index])}</span>
+            <span className="w-16">
+              {new Date(time).toLocaleDateString("en-US", {
+                weekday: "short",
+              })}
+              <span>{WeatherMap(data?.daily.weather_code[index])}</span>
             </span>
-            <span>{data?.daily.temperature_2m_max[index]}°C</span>
+            <p>{Math.round(data?.current.temperature_2m)}°C</p>
+            <p className="text-gray-500/75">
+              {Math.round(data?.daily.temperature_2m_min[index])}°C
+            </p>
+            <p className="text-gray-500/75">
+              {Math.round(data?.daily.temperature_2m_max[index])}°C
+            </p>
           </div>
         ))}
       </div>
