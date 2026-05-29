@@ -4,6 +4,7 @@ import Card from "./components/Card";
 import "./App.css";
 import { getWeather } from "./api";
 import DailyForecast from "./components/DailyForecast";
+import HourlyForecast from "./components/HourlyForecast";
 
 function App() {
   const { data } = useQuery({
@@ -13,7 +14,7 @@ function App() {
   return (
     <div className="flex flex-col gap-8 shadow-md">
       <Card title="Current Weather">{JSON.stringify(data?.latitude)}</Card>
-      <Card title="Hourly Forecast">{JSON.stringify(data?.longitude)}</Card>
+      <HourlyForecast></HourlyForecast>
       <DailyForecast />
       {/* <p>{JSON.stringify(data)}</p> */}
     </div>
