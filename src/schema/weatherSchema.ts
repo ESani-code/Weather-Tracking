@@ -75,6 +75,7 @@ export const WeatherSchema = z.object({
     uv_index_max: z.array(z.number()),
     precipitation_sum: z.array(z.number()),
     wind_speed_10m_max: z.array(z.number()),
+    visibility_mean: z.array(z.number()),
   }),
 });
 
