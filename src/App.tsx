@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 
-import Card from "./components/Card";
 import "./App.css";
 import { getWeather } from "./api";
 import DailyForecast from "./components/DailyForecast";
