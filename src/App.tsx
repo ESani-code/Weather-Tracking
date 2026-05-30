@@ -5,6 +5,7 @@ import { getWeather } from "./api";
 import DailyForecast from "./components/DailyForecast";
 import HourlyForecast from "./components/HourlyForecast";
 import CurrentWeather from "./components/CurrentWeather";
+import AdditionalInfo from "./components/AdditionalInfo";
 
 function App() {
   const { data } = useQuery({
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="flex flex-col gap-8 shadow-md">
       <CurrentWeather />
+      <AdditionalInfo />
       <HourlyForecast />
       <DailyForecast />
       {/* <p>{JSON.stringify(data)}</p> */}

@@ -9,14 +9,28 @@ const AdditionalInfo = () => {
     queryFn: () => getWeather({ lat: 50, lon: 50 }),
   });
 
-  const row = [{}];
+  const row = [
+    { label: "Visibility", value: `${data?.daily.visibility_mean[0]} km` },
+    {
+      label: "Surface Pressure",
+      value: `${data?.daily.surface_pressure_mean[0]} hPa`,
+    },
+    { label: "Dew Point", value: `${data?.daily.dew_point_2m_mean[0]}°C` },
+    { label: "Sunrise", value: `${data?.daily.sunrise[0].slice(-5)}` },
+    { label: "Sunset", value: `${data?.daily.sunset[0].slice(-5)}` },
+  ];
 
   return (
     <Card
       title="Additional Weather Information"
       childrenClassName="flex flex-col gap-8"
     >
-      <p>Additional info will be displayed here.</p>
+      {row.map((item, index) => (
+        <div key={index} className="flex justify-between">
+          <span className="font-medium">{item.label}:</span>
+          <span>{item.value}</span>
+        </div>
+      ))}
     </Card>
   );
 };

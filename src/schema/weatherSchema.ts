@@ -78,6 +78,8 @@ export const WeatherSchema = z.object({
     visibility_mean: z.array(z.number()),
     surface_pressure_mean: z.array(z.number()),
     dew_point_2m_mean: z.array(z.number()),
+    sunrise: z.array(z.string()),
+    sunset: z.array(z.string()),
   }),
 });
 
