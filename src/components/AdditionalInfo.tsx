@@ -10,14 +10,31 @@ const AdditionalInfo = () => {
   });
 
   const row = [
-    { label: "Visibility", value: `${data?.daily.visibility_mean[0]} km` },
+    {
+      label: "Visibility",
+      value: `${data?.daily.visibility_mean[0]} km`,
+      icon: "bi bi-eye",
+    },
     {
       label: "Surface Pressure",
       value: `${data?.daily.surface_pressure_mean[0]} hPa`,
+      icon: "bi bi-bar-chart",
     },
-    { label: "Dew Point", value: `${data?.daily.dew_point_2m_mean[0]}°C` },
-    { label: "Sunrise", value: `${data?.daily.sunrise[0].slice(-5)}` },
-    { label: "Sunset", value: `${data?.daily.sunset[0].slice(-5)}` },
+    {
+      label: "Dew Point",
+      value: `${data?.daily.dew_point_2m_mean[0]}°C`,
+      icon: "bi bi-droplet",
+    },
+    {
+      label: "Sunrise",
+      value: `${data?.daily.sunrise[0].slice(-5)}`,
+      icon: "bi bi-sunrise",
+    },
+    {
+      label: "Sunset",
+      value: `${data?.daily.sunset[0].slice(-5)}`,
+      icon: "bi bi-sunset",
+    },
   ];
 
   return (
@@ -27,7 +44,9 @@ const AdditionalInfo = () => {
     >
       {row.map((item, index) => (
         <div key={index} className="flex justify-between">
-          <span className="font-medium">{item.label}:</span>
+          <span className="font-medium">
+            {`${item.label}`} <i className={`${item.icon}`}> :</i>
+          </span>
           <span>{item.value}</span>
         </div>
       ))}

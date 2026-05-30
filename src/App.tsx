@@ -15,9 +15,9 @@ function App() {
   return (
     <div className="flex flex-col gap-8 shadow-md">
       <CurrentWeather />
-      <AdditionalInfo />
       <HourlyForecast />
       <DailyForecast />
+      <AdditionalInfo />
       {/* <p>{JSON.stringify(data)}</p> */}
     </div>
   );
