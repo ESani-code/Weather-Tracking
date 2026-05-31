@@ -83,5 +83,32 @@ export const WeatherSchema = z.object({
   }),
 });
 
+export const GeoCode = z.object({
+  id: z.number(),
+  name: z.string(),
+  latitude: z.number(),
+  longitude: z.number(),
+  elevation: z.number().optional(),
+  feature_code: z.string().optional(),
+  country_code: z.string().optional(),
+  timezone: z.string().optional(),
+  population: z.number().optional(),
+  postcodes: z.array(z.string()).optional(),
+  country_id: z.number().optional(),
+  country: z.string().optional(),
+
+  // Administrative boundaries are highly variable depending on the country,
+  // so they must be marked as optional.
+  admin1_id: z.number().optional(),
+  admin2_id: z.number().optional(),
+  admin3_id: z.number().optional(),
+  admin4_id: z.number().optional(),
+  admin1: z.string().optional(),
+  admin2: z.string().optional(),
+  admin3: z.string().optional(),
+  admin4: z.string().optional(),
+});
+
 // Extract the TypeScript type from the schema for use in your components
 export type WeatherData = z.infer<typeof WeatherSchema>;
+export type GeoCodeData = z.infer<typeof GeoCode>;

@@ -1,5 +1,4 @@
-import { WeatherSchema } from "./schema/weatherSchema";
-// const APIKey = import.meta.env.VITE_API_KEY;
+import { GeoCode, WeatherSchema } from "./schema/weatherSchema";
 
 export async function getWeather({ lat, lon }: { lat: number; lon: number }) {
   try {
@@ -8,6 +7,19 @@ export async function getWeather({ lat, lon }: { lat: number; lon: number }) {
     );
     const data = await res.json();
     return WeatherSchema.parse(data);
+  } catch (error) {
+    console.log(`Error: ${error}`);
+  }
+}
+
+export async function geoCoding(location: string, count: number = 1) {
+  try {
+    const res = await fetch(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=${count}`,
+    );
+    const data = await res.json();
+    console.log(data.results[0]);
+    return GeoCode.parse(data.results[0]);
   } catch (error) {
     console.log(`Error: ${error}`);
   }

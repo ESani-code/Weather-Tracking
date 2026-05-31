@@ -7,7 +7,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const LocationDropdown = () => {
+import { GeoCode } from "../../schema/weatherSchema";
+import type { Dispatch, SetStateAction } from "react";
+
+type Props = {
+  location: string;
+  setLocation: Dispatch<SetStateAction<string>>;
+};
+
+const LocationDropdown = ({ location, setLocation }: Props) => {
   const popularLocations = [
     "France",
     "New York",
@@ -31,7 +39,7 @@ const LocationDropdown = () => {
   ];
 
   return (
-    <Select>
+    <Select value={location} onValueChange={(value) => setLocation(value)}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
