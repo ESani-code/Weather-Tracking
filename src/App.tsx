@@ -9,6 +9,7 @@ import AdditionalInfo from "./components/AdditionalInfo";
 import Map from "./components/Map";
 import { useState } from "react";
 import type { Coords } from "./types";
+import LocationDropdown from "./components/dropdowns/LocationDropdown";
 
 function App() {
   const [coords, setCoords] = useState<Coords>({ lat: 9, lon: 8.6 });
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div className="flex flex-col gap-8 shadow-md">
+      <LocationDropdown />
       <Map coords={coords} onMapClick={onMapClick} />
       <CurrentWeather coords={coords} />
       <HourlyForecast coords={coords} />
