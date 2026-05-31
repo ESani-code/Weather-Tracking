@@ -12,6 +12,7 @@ const Map = ({ coords, onMapClick }: Props) => {
 
   return (
     <MapContainer
+      key={`${coords.lat},${coords.lon}`}
       center={[lat, lon]}
       zoom={5}
       style={{ width: "1000px", height: "500px" }}
