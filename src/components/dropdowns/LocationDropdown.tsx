@@ -45,6 +45,9 @@ const LocationDropdown = ({ location, setLocation }: Props) => {
       </SelectTrigger>
       <SelectContent className="z-1001">
         <SelectGroup>
+          {location === "custom" && (
+            <SelectItem value="custom">Custom</SelectItem>
+          )}
           {popularLocations.map((location) => (
             <SelectItem key={location} value={location}>
               {location}
