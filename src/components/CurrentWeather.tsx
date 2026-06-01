@@ -25,7 +25,7 @@ const CurrentWeather = ({ coords }: Props) => {
   return (
     <Card
       title="Current Weather"
-      childrenClassName="flex flex-col item-center gap-6 justify-center"
+      childrenClassName="flex flex-col items-center gap-6 justify-center"
     >
       <h2 className="text-5xl font-bold text-center">
         {Math.round(data?.current.temperature_2m ?? 90)}°C
@@ -45,7 +45,7 @@ const CurrentWeather = ({ coords }: Props) => {
 
       {/* Apparent Temperature, Humidity, Wind Speed */}
 
-      <div className="flex justify-between">
+      <div className="w-full flex justify-between">
         <div className="flex flex-col gap-2 items-center">
           <p className="text-md font-semibold text-center text-gray-500 text-nowrap">
             Feels Like:

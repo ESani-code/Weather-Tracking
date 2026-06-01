@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { GeoCode } from "../../schema/weatherSchema";
+// import { GeoCode } from "../../schema/weatherSchema";
 import type { Dispatch, SetStateAction } from "react";
 
 type Props = {
