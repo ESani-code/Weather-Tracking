@@ -20,6 +20,7 @@ import Sidebar from "./components/Sidebar";
 function App() {
   const [coordinates, setCoords] = useState<Coords>({ lat: 9, lon: 8.6 });
   const [location, setLocation] = useState<string>("Berlin");
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
 
   const { data } = useQuery({
     queryKey: ["geocode", location],
@@ -39,11 +40,17 @@ function App() {
   return (
     <>
       <div className="flex flex-col gap-8 shadow-md">
-        <Map coords={coords} onMapClick={onMapClick} />
-        <div className="flex gap-4">
+        <div className="flex gap-4 pt-5">
           <h1 className="text-2xl font-semibold">Location: </h1>
           <LocationDropdown location={location} setLocation={setLocation} />
+          <button
+            className="ml-auto pr-3"
+            onClick={() => setIsSidebarOpen(true)}
+          >
+            <i className="bi bi-list text-4xl" />
+          </button>
         </div>
+        <Map coords={coords} onMapClick={onMapClick} />
         <Suspense fallback={<CurrentSkeleton />}>
           <CurrentWeather coords={coords} />
         </Suspense>
@@ -60,7 +67,11 @@ function App() {
       </div>
 
       <ErrorBoundary fallback={<p>Error!!!!!</p>}>
-        <Sidebar coords={coords} />
+        <Sidebar
+          coords={coords}
+          isSidebarOpen={isSidebarOpen}
+          setIsSidebarOpen={setIsSidebarOpen}
+        />
       </ErrorBoundary>
     </>
   );

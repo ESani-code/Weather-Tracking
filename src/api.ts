@@ -33,7 +33,7 @@ export async function geoCoding(location: string, count: number = 1) {
 export async function airQuality({ lat, lon }: { lat: number; lon: number }) {
   try {
     const res = await fetch(
-      `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,european_aqi`,
+      `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,pm10,carbon_monoxide,pm2_5,nitrogen_dioxide,sulphur_dioxide,ozone`,
     );
     const data = await res.json();
     return AirQualitySchema.parse(data);
