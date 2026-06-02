@@ -69,7 +69,7 @@ function AirPollution({ coords }: Props) {
         </TooltipProvider>
       </h1>
 
-      {Object.entries(data?.current).map(([key, entry], i) => {
+      {Object.entries(data?.current).map(([key, entry]) => {
         if (key == "interval" || key == "time" || key == "european_aqi") {
           return null;
         }
