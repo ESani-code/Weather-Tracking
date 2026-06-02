@@ -14,6 +14,8 @@ import CurrentSkeleton from "./components/skeletons/CurrentSkeleton";
 import HourlySkeleton from "./components/skeletons/HourlySkeleton";
 import DailyForecastSkeleton from "./components/skeletons/DailyForecastSkeleton";
 import AdditionalInfoSkeleton from "./components/skeletons/AdditionalInfoSkeleton";
+import { ErrorBoundary } from "react-error-boundary";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({ lat: 9, lon: 8.6 });
@@ -35,26 +37,32 @@ function App() {
       : { lat: data?.latitude ?? 0, lon: data?.longitude ?? 0 };
 
   return (
-    <div className="flex flex-col gap-8 shadow-md">
-      <Map coords={coords} onMapClick={onMapClick} />
-      <div className="flex gap-4">
-        <h1 className="text-2xl font-semibold">Location: </h1>
-        <LocationDropdown location={location} setLocation={setLocation} />
+    <>
+      <div className="flex flex-col gap-8 shadow-md">
+        <Map coords={coords} onMapClick={onMapClick} />
+        <div className="flex gap-4">
+          <h1 className="text-2xl font-semibold">Location: </h1>
+          <LocationDropdown location={location} setLocation={setLocation} />
+        </div>
+        <Suspense fallback={<CurrentSkeleton />}>
+          <CurrentWeather coords={coords} />
+        </Suspense>
+        <Suspense fallback={<HourlySkeleton />}>
+          <HourlyForecast coords={coords} />
+        </Suspense>
+        <Suspense fallback={<DailyForecastSkeleton />}>
+          <DailyForecast coords={coords} />
+        </Suspense>
+        <Suspense fallback={<AdditionalInfoSkeleton />}>
+          <AdditionalInfo coords={coords} />
+        </Suspense>
+        {/* <p>{JSON.stringify(data)}</p> */}
       </div>
-      <Suspense fallback={<CurrentSkeleton />}>
-        <CurrentWeather coords={coords} />
-      </Suspense>
-      <Suspense fallback={<HourlySkeleton />}>
-        <HourlyForecast coords={coords} />
-      </Suspense>
-      <Suspense fallback={<DailyForecastSkeleton />}>
-        <DailyForecast coords={coords} />
-      </Suspense>
-      <Suspense fallback={<AdditionalInfoSkeleton />}>
-        <AdditionalInfo coords={coords} />
-      </Suspense>
-      {/* <p>{JSON.stringify(data)}</p> */}
-    </div>
+
+      <ErrorBoundary fallback={<p>Error!!!!!</p>}>
+        <Sidebar coords={coords} />
+      </ErrorBoundary>
+    </>
   );
 }
 

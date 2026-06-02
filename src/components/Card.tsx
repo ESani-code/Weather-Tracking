@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 type Props = {
   children: ReactNode;
-  title: string;
+  title?: string;
   childrenClassName?: string;
 };
 

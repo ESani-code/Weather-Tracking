@@ -1,4 +1,8 @@
-import { GeoCode, WeatherSchema } from "./schema/weatherSchema";
+import {
+  AirQualitySchema,
+  GeoCode,
+  WeatherSchema,
+} from "./schema/weatherSchema";
 
 export async function getWeather({ lat, lon }: { lat: number; lon: number }) {
   try {
@@ -9,6 +13,7 @@ export async function getWeather({ lat, lon }: { lat: number; lon: number }) {
     return WeatherSchema.parse(data);
   } catch (error) {
     console.log(`Error: ${error}`);
+    throw error;
   }
 }
 
@@ -18,9 +23,23 @@ export async function geoCoding(location: string, count: number = 1) {
       `https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=${count}`,
     );
     const data = await res.json();
-    console.log(data.results[0]);
     return GeoCode.parse(data.results[0]);
   } catch (error) {
     console.log(`Error: ${error}`);
+    throw error;
+  }
+}
+
+export async function airQuality({ lat, lon }: { lat: number; lon: number }) {
+  try {
+    const res = await fetch(
+      `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&hourly=pm10,pm2_5,carbon_monoxide,carbon_dioxide,nitrogen_dioxide,sulphur_dioxide,ozone,european_aqi`,
+    );
+    const data = await res.json();
+    return AirQualitySchema.parse(data);
+  } catch (e) {
+    console.error(e);
+
+    throw e;
   }
 }
