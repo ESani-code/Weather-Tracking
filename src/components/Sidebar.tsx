@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import clsx from "clsx";
+import SidebarSkeleton from "./skeletons/SidebarSkeleton";
 
 type Props = {
   coords: Coords;
@@ -30,7 +31,14 @@ export default function Sidebar(props: Props) {
       <button onClick={() => setIsSidebarOpen(false)}>
         <i className="bi bi-x text-4xl" />
       </button>
-      <Suspense>
+      <Suspense
+        fallback={
+          <SidebarSkeleton
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+        }
+      >
         <AirPollution {...props} />
       </Suspense>
     </div>
@@ -131,6 +139,9 @@ function AirPollution({ coords }: Props) {
     </div>
   );
 }
+
+// Pollutant Data & Helper Funcions
+
 export const pollutantFullName: Record<string, string> = {
   pm2_5: "Particulate Matter 2.5 (PM2.5)",
   pm10: "Particulate Matter 10 (PM10)",
