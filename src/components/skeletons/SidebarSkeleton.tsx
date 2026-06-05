@@ -5,8 +5,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { Slider } from "../ui/slider";
-// import type { Dispatch, SetStateAction } from "react";
 import { Skeleton } from "../ui/skeleton";
 
 const SidebarSkeleton = () => {
@@ -59,16 +57,16 @@ const SidebarSkeleton = () => {
                     </Tooltip>
                   </TooltipProvider>
                 </div>
-                <Skeleton className="w-16 h-7" />
+                <Skeleton className="w-16 h-7 bg-sidebar" />
               </div>
-              <Skeleton className="w-70 h-1" />
+              <Skeleton className="w-70 h-1 bg-sidebar" />
               <div className="flex justify-between text-sm">
-                <Skeleton className="w-2 h-5" />
-                <Skeleton className="w-8 h-5" />
+                <Skeleton className="w-2 h-5 bg-sidebar" />
+                <Skeleton className="w-8 h-5 bg-sidebar" />
               </div>
 
               <div className="flex items-center justify-center">
-                <Skeleton className="w-9 h-5 " />
+                <Skeleton className="w-9 h-5 bg-sidebar" />
               </div>
             </Card>
           );
