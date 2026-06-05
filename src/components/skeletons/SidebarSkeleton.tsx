@@ -6,15 +6,10 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import { Slider } from "../ui/slider";
-import type { Dispatch, SetStateAction } from "react";
+// import type { Dispatch, SetStateAction } from "react";
 import { Skeleton } from "../ui/skeleton";
 
-type Props = {
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
-};
-
-const SidebarSkeleton = (props: Props) => {
+const SidebarSkeleton = () => {
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -59,7 +54,6 @@ const SidebarSkeleton = (props: Props) => {
                         <i className="bi bi-info-circle size-4" />
                       </TooltipTrigger>
                       <TooltipContent className="z-2000">
-                        {/* <Skeleton className="max-w-xs h-4" /> */}
                         <p className="max-w-xs">uuioi</p>
                       </TooltipContent>
                     </Tooltip>
@@ -67,17 +61,15 @@ const SidebarSkeleton = (props: Props) => {
                 </div>
                 <Skeleton className="w-16 h-7" />
               </div>
-              <Slider min={0} max={100} value={[50]} disabled />
+              <Skeleton className="w-70 h-1" />
               <div className="flex justify-between text-sm">
-                <p>0</p>
-                <p>ppopp</p>
+                <Skeleton className="w-2 h-5" />
+                <Skeleton className="w-8 h-5" />
               </div>
 
               <div className="flex items-center justify-center">
                 <Skeleton className="w-9 h-5 " />
               </div>
-
-              {/* <div className="flex justify-center text-sm font-bold">ppopo</div> */}
             </Card>
           );
         })}

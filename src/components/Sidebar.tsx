@@ -31,14 +31,7 @@ export default function Sidebar(props: Props) {
       <button onClick={() => setIsSidebarOpen(false)}>
         <i className="bi bi-x text-4xl" />
       </button>
-      <Suspense
-        fallback={
-          <SidebarSkeleton
-            isSidebarOpen={isSidebarOpen}
-            setIsSidebarOpen={setIsSidebarOpen}
-          />
-        }
-      >
+      <Suspense fallback={<SidebarSkeleton />}>
         <AirPollution {...props} />
       </Suspense>
     </div>
