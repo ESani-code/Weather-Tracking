@@ -22,7 +22,7 @@ const CurrentWeather = ({ coords }: Props) => {
       data?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone, // Use the timezone from the weather data
   });
 
-  const additionalInfoStyling = `text-4xl font-bold text-center text-nowrap 2xl:text-3xl`;
+  const additionalInfoStyling = `text-4xl font-bold text-center text-nowrap 2xl:text-3xl max-xs:text-2xl`;
 
   return (
     <Card
@@ -49,7 +49,7 @@ const CurrentWeather = ({ coords }: Props) => {
 
       <div className="w-full flex justify-center md:pt-9 pb-2">
         <div className="flex flex-col gap-2 items-center">
-          <p className="text-md font-semibold text-center text-gray-500 text-nowrap 2xl:text-sm">
+          <p className="text-md font-semibold text-center text-gray-500 text-nowrap 2xl:text-sm max-xs:text-sm">
             Feels Like:
           </p>
           <h3 className={additionalInfoStyling}>
@@ -58,7 +58,7 @@ const CurrentWeather = ({ coords }: Props) => {
         </div>
 
         <div className="flex flex-col gap-2 items-center w-full">
-          <p className="text-md font-semibold text-center text-gray-500 text-nowrap 2xl:text-sm">
+          <p className="text-md font-semibold text-center text-gray-500 text-nowrap 2xl:text-sm max-xs:text-sm">
             Humidity:
           </p>
           <h3 className={additionalInfoStyling}>
@@ -66,7 +66,7 @@ const CurrentWeather = ({ coords }: Props) => {
           </h3>
         </div>
         <div className="flex flex-col gap-2 items-center">
-          <p className="text-md font-semibold text-center text-gray-500 text-nowrap 2xl:text-sm">
+          <p className="text-md font-semibold text-center text-gray-500 text-nowrap 2xl:text-sm max-xs:text-sm">
             Wind Speed:
           </p>
           <h3 className={additionalInfoStyling}>

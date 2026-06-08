@@ -93,11 +93,7 @@ const Map = ({ coords, onMapClick }: Props) => {
 
       <LayersControl>
         {/* <MapTileLayer /> */}
-        <TileLayer
-          attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={`https://api.maptiler.com/maps/basic-dark/256/{z}/{x}/{y}.png?key=${mapTilerApiKey}`}
-        />
-        <LayersControl.BaseLayer name="Online Map (Dark Mode)">
+        <LayersControl.BaseLayer name="Online Map (Dark Mode)" checked>
           <TileLayer
             attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url={`https://api.maptiler.com/maps/basic-dark/256/{z}/{x}/{y}.png?key=${mapTilerApiKey}`}
