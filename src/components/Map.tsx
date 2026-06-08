@@ -93,7 +93,11 @@ const Map = ({ coords, onMapClick }: Props) => {
 
       <LayersControl>
         {/* <MapTileLayer /> */}
-        <LayersControl.BaseLayer name="Online Map (Dark Mode)" checked>
+        <TileLayer
+          attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url={`https://api.maptiler.com/maps/basic-dark/256/{z}/{x}/{y}.png?key=${mapTilerApiKey}`}
+        />
+        <LayersControl.BaseLayer name="Online Map (Dark Mode)">
           <TileLayer
             attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url={`https://api.maptiler.com/maps/basic-dark/256/{z}/{x}/{y}.png?key=${mapTilerApiKey}`}
@@ -114,13 +118,14 @@ const Map = ({ coords, onMapClick }: Props) => {
           />
         </LayersControl.BaseLayer>
 
-        <LayersControl.Overlay name="Open-Meteo Weather Temperature Layer">
+        {/* Commented out the Buggy overlay in the component*/}
+        {/* <LayersControl.Overlay name="Open-Meteo Weather Temperature Layer">
           <OpenMeteoLayer variable="temperature_2m" opacity={0.65} />
         </LayersControl.Overlay>
 
         <LayersControl.Overlay name="Open-Meteo Precipitation Layer">
           <OpenMeteoLayer variable="precipitation" opacity={0.65} />
-        </LayersControl.Overlay>
+        </LayersControl.Overlay> */}
       </LayersControl>
 
       {/* 
