@@ -15,7 +15,7 @@ const DailyForecastSkeleton = () => {
           <span className="w-1">
             <Skeleton className="w-8 h-6" />
           </span>
-          <Skeleton className="w-8 h-6" />
+          <Skeleton className="w-2 h-6" />
           <Skeleton className="w-8 h-6" />
 
           <p className="text-gray-500/75">

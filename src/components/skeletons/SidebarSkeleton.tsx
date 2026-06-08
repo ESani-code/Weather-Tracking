@@ -52,21 +52,21 @@ const SidebarSkeleton = () => {
                         <i className="bi bi-info-circle size-4" />
                       </TooltipTrigger>
                       <TooltipContent className="z-2000">
-                        <p className="max-w-xs">uuioi</p>
+                        <p className="max-w-xs">........</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </div>
-                <Skeleton className="w-16 h-7 bg-sidebar" />
+                <Skeleton className="w-16 h-7 dark:bg-sidebar" />
               </div>
-              <Skeleton className="w-70 h-1 bg-sidebar" />
+              <Skeleton className="w-70 h-1 dark:bg-sidebar" />
               <div className="flex justify-between text-sm">
-                <Skeleton className="w-2 h-5 bg-sidebar" />
-                <Skeleton className="w-8 h-5 bg-sidebar" />
+                <Skeleton className="w-2 h-5 dark:bg-sidebar" />
+                <Skeleton className="w-8 h-5 dark:bg-sidebar" />
               </div>
 
               <div className="flex items-center justify-center">
-                <Skeleton className="w-9 h-5 bg-sidebar" />
+                <Skeleton className="w-9 h-5 dark:bg-sidebar" />
               </div>
             </Card>
           );
