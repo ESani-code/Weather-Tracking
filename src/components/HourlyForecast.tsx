@@ -16,12 +16,12 @@ const HourlyForecast = ({ coords }: Props) => {
   return (
     <Card
       title="Hourly Forecast"
-      childrenClassName="flex flex-row gap-4 overflow-x-scroll"
+      childrenClassName="flex flex-row gap-4 overflow-x-scroll "
     >
-      {data?.hourly.time.map((time, index) => (
+      {data?.hourly.time.slice(0, 25).map((time, index) => (
         <div
           key={index}
-          className="flex flex-col gap-2 items-center p-4 rounded-lg shadow"
+          className="h-full flex flex-col 2xl:justify-between gap-2 items-center p-4 rounded-lg shadow 2xl:pt-6 2xl:p-3"
         >
           <span className="text-lg font-bold whitespace-nowrap">
             {new Date(time).toLocaleTimeString("en-US", {

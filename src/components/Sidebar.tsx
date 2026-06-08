@@ -24,12 +24,12 @@ export default function Sidebar(props: Props) {
   return (
     <div
       className={clsx(
-        "fixed top-0 right-0 h-screen w-90 py-4 px-3 shadow-md bg-sidebar z-1002 overflow-y-scroll transition-transform duration-300",
+        "fixed top-0 right-0 h-screen w-(--sidebar-width) py-4 px-3 shadow-md bg-sidebar z-1002 overflow-y-scroll transition-transform duration-300 lg:translate-x-0!",
         isSidebarOpen ? "translate-x-0" : "translate-x-full",
       )}
     >
       <button onClick={() => setIsSidebarOpen(false)}>
-        <i className="bi bi-x text-4xl" />
+        <i className="bi bi-x text-4xl lg:hidden" />
       </button>
       <Suspense fallback={<SidebarSkeleton />}>
         <AirPollution {...props} />

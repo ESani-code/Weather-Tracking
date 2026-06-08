@@ -18,9 +18,9 @@ import "@maplibre/maplibre-gl-leaflet";
 // Open-Meteo Imports & React-Leaflet Core API
 import { omProtocol } from "@openmeteo/weather-map-layer";
 import { createLayerComponent } from "@react-leaflet/core";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
-import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
+// import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk";
 
 // Register the Open-Meteo protocol globally so MapLibre can read "om://" URLs
 try {
@@ -87,17 +87,24 @@ const Map = ({ coords, onMapClick }: Props) => {
     <MapContainer
       center={[lat, lon]}
       zoom={5}
-      style={{ width: "1000px", height: "500px" }}
+      style={{ width: "100%", height: "100%" }}
     >
       <MapClick onMapClick={onMapClick} coords={coords} />
 
       <LayersControl>
-        <LayersControl.BaseLayer name="OpenStreetMap" checked>
-          <MapTileLayer />
-          {/* <TileLayer
+        {/* <MapTileLayer /> */}
+        <LayersControl.BaseLayer name="Online Map (Dark Mode)" checked>
+          <TileLayer
+            attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url={`https://api.maptiler.com/maps/basic-dark/256/{z}/{x}/{y}.png?key=${mapTilerApiKey}`}
+          />
+        </LayersControl.BaseLayer>
+
+        <LayersControl.BaseLayer name="Online Map (Light Mode)">
+          <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          /> */}
+          />
         </LayersControl.BaseLayer>
 
         <LayersControl.BaseLayer name="Satellite (Esri)">
@@ -144,22 +151,22 @@ function MapClick({
   return null;
 }
 
-function MapTileLayer() {
-  const map = useMap();
+// function MapTileLayer() {
+//   const map = useMap();
 
-  useEffect(() => {
-    const tileLayer = new MaptilerLayer({
-      style: "basic-dark",
-      apiKey: `${mapTilerApiKey}`,
-    });
+//   useEffect(() => {
+//     const tileLayer = new MaptilerLayer({
+//       style: "basic-dark",
+//       apiKey: `${mapTilerApiKey}`,
+//     });
 
-    tileLayer.addTo(map);
-    return () => {
-      map.removeLayer(tileLayer);
-    };
-  }, [map]);
+//     tileLayer.addTo(map);
+//     return () => {
+//       map.removeLayer(tileLayer);
+//     };
+//   }, [map]);
 
-  return null;
-}
+//   return null;
+// }
 
 export default Map;

@@ -44,7 +44,7 @@ const AdditionalInfo = ({ coords }: Props) => {
   return (
     <Card
       title="Additional Weather Information"
-      childrenClassName="flex flex-col gap-8"
+      childrenClassName="grid grid-cols-1 md:grid-cols-2 gap-8 justify-between"
     >
       {row.map((item, index) => (
         <div key={index} className="flex justify-between">

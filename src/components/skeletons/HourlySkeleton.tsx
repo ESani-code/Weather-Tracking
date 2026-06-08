@@ -5,9 +5,9 @@ const HourlySkeleton = () => {
   return (
     <Card
       title="Hourly Forecast"
-      childrenClassName="flex flex-row gap-4 overflow-x"
+      childrenClassName="flex flex-row gap-4 overflow-x-scroll"
     >
-      {Array.from({ length: 20 }).map((_, index) => (
+      {Array.from({ length: 24 }).map((_, index) => (
         <div
           key={index}
           className="flex flex-col gap-2 items-center p-4 rounded-lg shadow"
