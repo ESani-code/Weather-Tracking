@@ -17,6 +17,7 @@ import AdditionalInfoSkeleton from "./components/skeletons/AdditionalInfoSkeleto
 import { ErrorBoundary } from "react-error-boundary";
 import Sidebar from "./components/Sidebar";
 import MobileHeader from "./components/MobileHeader";
+import LightDarkToggleMode from "./components/LightDarkToggleMode";
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({ lat: 9, lon: 8.6 });
@@ -45,12 +46,17 @@ function App() {
         <div className="flex gap-4">
           <h1 className="text-lg font-semibold md:text-2xl">Location: </h1>
           <LocationDropdown location={location} setLocation={setLocation} />
-          <button
-            className="ml-auto pr-3 max-sm:hidden"
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            <i className="bi bi-list text-4xl lg:hidden" />
-          </button>
+          <div className="ml-auto flex justify-end">
+            <button
+              className="ml-auto pr-3 max-xs:hidden"
+              onClick={() => setIsSidebarOpen(true)}
+            >
+              <i className="bi bi-list text-4xl lg:hidden" />
+            </button>
+            <div className="ml-auto flex gap-2 items-center max-xs:hidden">
+              <LightDarkToggleMode />
+            </div>
+          </div>
         </div>
 
         <div className="grid gap-5 grid-cols-1 2xl:flex-1 md:grid-cols-2 2xl:grid-cols-4 2xl:grid-rows-4 2xl:min-h-[1000px]">
