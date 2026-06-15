@@ -78,7 +78,7 @@ const SidebarSkeleton = () => {
 
 export default SidebarSkeleton;
 
-export const pollutantFullName: Record<string, string> = {
+const pollutantFullName: Record<string, string> = {
   pm10: "Pm10",
   carbon_monoxide: "Carbon Monoxide",
   pm2_5: "Pm2 5",

@@ -27,6 +27,7 @@ try {
   maplibregl.addProtocol("om", omProtocol);
 } catch (e) {
   // Catch errors
+  console.log(e);
 }
 
 type Props = {

@@ -135,7 +135,7 @@ function AirPollution({ coords }: Props) {
 
 // Pollutant Data & Helper Funcions
 
-export const pollutantFullName: Record<string, string> = {
+const pollutantFullName: Record<string, string> = {
   pm2_5: "Particulate Matter 2.5 (PM2.5)",
   pm10: "Particulate Matter 10 (PM10)",
   nitrogen_dioxide: "Nitrogen Dioxide (NO₂)",
@@ -145,7 +145,7 @@ export const pollutantFullName: Record<string, string> = {
   carbon_monoxide: "Carbon Monoxide (CO)",
 };
 
-export type PollutantCategory =
+type PollutantCategory =
   | "Good"
   | "Fair"
   | "Moderate"
@@ -153,21 +153,21 @@ export type PollutantCategory =
   | "Very poor"
   | "Extremely poor";
 
-export interface ThresholdRange {
+interface ThresholdRange {
   label: PollutantCategory;
   min: number;
   max: number;
   color: string; // Tailored Hex/Tailwind colors matching the image
 }
 
-export interface PollutantConfig {
+interface PollutantConfig {
   displayName: string;
   unit: string;
   maxSliderValue: number; // The absolute maximum value for the slider scale
   ranges: ThresholdRange[];
 }
 
-export const POLLUTANT_MAPS: Record<string, PollutantConfig> = {
+const POLLUTANT_MAPS: Record<string, PollutantConfig> = {
   pm2_5: {
     displayName: "PM2.5",
     unit: "μg/m³",
@@ -265,7 +265,7 @@ export const POLLUTANT_MAPS: Record<string, PollutantConfig> = {
  * Given a pollutant key (e.g. "pm2_5") and its value,
  * returns the corresponding range tier classification.
  */
-export function getPollutantCategory(
+function getPollutantCategory(
   key: string,
   value: number,
 ): ThresholdRange | undefined {
