@@ -7,7 +7,7 @@ import HourlyForecast from "./components/HourlyForecast";
 import CurrentWeather from "./components/CurrentWeather";
 import AdditionalInfo from "./components/AdditionalInfo";
 import Map from "./components/Map";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import type { Coords } from "./types";
 import LocationDropdown from "./components/dropdowns/LocationDropdown";
 import CurrentSkeleton from "./components/skeletons/CurrentSkeleton";
@@ -19,10 +19,76 @@ import Sidebar from "./components/Sidebar";
 import MobileHeader from "./components/MobileHeader";
 import LightDarkToggleMode from "./components/LightDarkToggleMode";
 
+
+// Browser Location Types
+type GeolocationPosition = {
+  coords: {
+    latitude: number;
+    longitude: number;
+    accuracy: number | null;
+  };
+  timestamp: number;
+};
+
+type GeolocationPositionError = {
+  code: number;
+  message: string;
+};
+
+// Main Function obtaining Browser Location
+function getUserLocation(): Promise<{latitude: number, longitude: number, accuracy: number | null}> {
+  return new Promise((resolve, reject) => {
+    if (!("geolocation" in navigator)) {
+      reject(new Error("Geolocation is not supported by your browser."));
+      return; // Exit the function
+    }
+
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 8000,
+      maximumAge: 0
+    };
+
+    // Success Function to return filtered browser Location data
+    function success(position : GeolocationPosition) {
+      const locationObject = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        accuracy: position.coords.accuracy
+      };      
+      resolve(locationObject);
+    }
+
+    // Error Function to return error Data
+    function error(err : GeolocationPositionError) {
+      reject(err);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  });
+}
+
+
 function App() {
-  const [coordinates, setCoords] = useState<Coords>({ lat: 9, lon: 8.6 });
-  const [location, setLocation] = useState<string>("Berlin");
+  const [coordinates, setCoords] = useState<Coords>({ lat: 6, lon: 8.6 });
+  const [location, setLocation] = useState<string>("custom");
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    async function fetchLocation(){
+        try{
+        const myLocation = await getUserLocation()
+        setCoords({
+          lat: myLocation.latitude,
+          lon: myLocation.longitude
+        });
+      } catch(error){
+        console.error(`Failed to obtain Location Data: ${error}`)
+      }
+    }
+
+    fetchLocation()
+  }, [])
 
   const { data } = useQuery({
     queryKey: ["geocode", location],
