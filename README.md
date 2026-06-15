@@ -9,8 +9,6 @@ A modern, responsive weather tracking web application built with React and TypeS
 > **[https://weather-tracking-demo.vercel.app/](https://weather-tracking-demo.vercel.app/)**
 
 <!-- Add screenshots below once available -->
-> 📸 *Screenshots coming soon — replace this section with images of your UI.*
-
 ![Home Screen](./screenshots/home(Dark).png)
 
 ---
