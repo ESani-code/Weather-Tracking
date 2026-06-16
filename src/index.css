@@ -28,7 +28,7 @@
   body {
     background-color: var(--color-primary-color);
     color: var(--color-text-primary);
-    @apply bg-background text-foreground transition-all duration-300;
+    @apply bg-background text-foreground;
   }
   * {
     @apply border-border outline-ring/50;
